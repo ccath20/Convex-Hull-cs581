@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Convex Hull, Project #1 </title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+   
+    varying vec4 color;
+
+    void
+    main()
+    {
+    gl_PointSize = 1.0;
+    mat4 theMatrix;
+    theMatrix[0] = vec4(1,0,0,-.95);
+    theMatrix[1] = vec4(0,1,0,-.95);
+    theMatrix[2] = vec4(0,0,1,0);
+    theMatrix[3] = vec4(0,0,0,1);
+    gl_Position = vPosition * theMatrix;
+    
+    }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+
+    uniform vec4 fColor;
+    void main()
+    {
+   
+    gl_FragColor = fColor;
+    }
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="convexhull.js"></script>
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <br />
+    <button id="newG" position="relative">New Problem</button>
+    <button id="toggleLines" position="relative"> Show lines from origin</button>
+    <br />
+    <button id="setupGS" position="relative"> Set up Gram  Scan</button>
+    <button id="startGS" position="relative"> Run Gram Scan</button>
+    <button id="stepButtonGS" position="relative"> Step Gram Scan</button>
+    <br />
+    <button id="setupJM" position="relative"> Set up Jarvis March</button>
+    <button id="startJM" position="relative"> Run Jarvis March</button>
+    <button id="stepButtonJM" position="relative"> Step Jarvis March</button>
+    <br />
+    <button id="setupQH" position="relative"> Set up Quick Hull</button>
+    <button id="startQH" position="relative"> Run Quick Hull</button>
+    <button id="stepButtonQH" position="relative"> Step Quick Hull</button>
+
+    <br />
+    <input type="number" step=".01" id="delaytime" value=".01">
+    <label for="delaytime">Second(s) between steps</label>
+    <br />
+    <input type="number" id="pointC" value="12">
+    <label for="pointC">Points in problem</label>
+    <br />
+
+
+</body>
+</html>
+
